@@ -9,13 +9,15 @@ The project changes span OpenHop Core, Repeater, Repeater UI, a separate USB Mod
 - Native radio queues and airtime accounting handle crossings, with bounded queues and retries, restart-safe echo suppression, and explicit handling of failed or uncertain transmissions. Receive observations retain radio provenance.
 - Bridge settings provide channel mappings, write-only channel keys, direct-message routes, queue limits, and explicit origin and companion home radios. Validated configuration changes require a restart.
 - Separate USB bench modem targets support Heltec T096 and V4.3 hardware with restricted radio profiles and transmit power.
-- An optional TLS Internet Link connects the Pi to a MeshCore-based Heltec V4.3 TFT radio. The TFT adds on-screen Wi-Fi setup, enrollment, and identity generation during installation. Local RF startup remains independent of optional link failures.
+- An optional TLS iLink (Internet Link) connects the Pi to a MeshCore Observer-based Heltec V4.3 TFT radio. The TFT adds on-screen Wi-Fi setup, enrollment, and identity generation during installation. Local RF startup remains independent of optional link failures.
 
 This hub pins compatible component commits and provides reconstruction instructions, integration tests, and firmware releases. Test scope and hardware limitations are recorded below.
 
 ## Source
 
-`components.json` pins compatible public commits. The source forks are [Core](https://github.com/kesh33w/openhop_core), [Repeater](https://github.com/kesh33w/openhop_repeater), [Repeater UI](https://github.com/kesh33w/openHop_RepeaterUI), [Modem](https://github.com/kesh33w/openhop_modem) and [MeshCore TFT](https://github.com/kesh33w/MeshCore/tree/sacmesh/v43-tft-internet-link-20261105). The OpenHop Modem branch is the separate USB bench modem. The TFT branch derives from MeshCore observer commit `d664d89df66bdacc1319900a2e2d152fa31b9dc9`.
+`components.json` pins compatible public commits. The source forks are [Core](https://github.com/kesh33w/openhop_core/tree/kesh/bridge), [Repeater](https://github.com/kesh33w/openhop_repeater/tree/kesh/bridge), [Repeater UI](https://github.com/kesh33w/openHop_RepeaterUI/tree/kesh/bridge), [Modem](https://github.com/kesh33w/openhop_modem/tree/kesh/heltec-bench) and [V4.3 TFT iLink firmware](https://github.com/kesh33w/MeshCore/tree/kesh/v43-tft-ilink). The OpenHop Modem branch is the separate USB bench modem. The TFT branch derives from MeshCore observer commit `d664d89df66bdacc1319900a2e2d152fa31b9dc9`.
+
+Current development uses `kesh/openhop-bridge` in this hub, `kesh/bridge` in Core, Repeater and Repeater UI, `kesh/heltec-bench` in Modem, and `kesh/v43-tft-ilink` in MeshCore. `components.json` and the release manifests retain the original published release pins. See [branch history and clone-switching instructions](docs/branch-history.md) for the verified commit mapping and preserved original branches.
 
 This hub contains the Python Internet Link sidecar, portable enrollment source and integration tests. Runtime keys, client certificates, Wi-Fi passwords, live routes and enrollment records are installation inputs and are excluded.
 
@@ -33,7 +35,7 @@ PYTHONPATH=.:sources/openhop_core/src:sources/openhop_repeater:tools .venv/bin/p
 
 The tests use loopback sockets and simulated radios. They do not require credentials or connected hardware. An operating-system sandbox that blocks socket wakeups can prevent the threaded event-loop test from finishing.
 
-For the frontend, use Node 22 and the UI fork's package lock, then run `npm ci`, `npm run type-check`, `npm run test:unit -- --run --maxWorkers=2`, and `npm run build-only`. For TFT build instructions see [TFT build instructions](https://github.com/kesh33w/MeshCore/blob/sacmesh/v43-tft-internet-link-20261105/OPENHOP-BRIDGE-TFT.md) in the MeshCore branch. The private link sidecar must be on the daemon's Python path. `enrollment/pi_enrollment_entry.py --check` checks imports without starting a service; activation requires explicit configuration, CA, issuer-key and state paths. Configure routes and trust deliberately before activation.
+For the frontend, use Node 22 and the UI fork's package lock, then run `npm ci`, `npm run type-check`, `npm run test:unit -- --run --maxWorkers=2`, and `npm run build-only`. For TFT builds, see [the V4.3 TFT iLink guide](https://github.com/kesh33w/MeshCore/blob/kesh/v43-tft-ilink/OPENHOP-BRIDGE-TFT.md) in the MeshCore branch. The private link sidecar must be on the daemon's Python path. `enrollment/pi_enrollment_entry.py --check` checks imports without starting a service; activation requires explicit configuration, CA, issuer-key and state paths. Configure routes and trust deliberately before activation.
 
 ## Firmware and verification
 

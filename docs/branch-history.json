@@ -1,0 +1,114 @@
+{
+  "purpose": "Parallel project branches with corrected attribution; original refs and release pins remain unchanged.",
+  "repositories": [
+    {
+      "repository": "https://github.com/kesh33w/kesh-openhop-bridge",
+      "original_branch": "main",
+      "original_tip": "a01a069c97e2cb32e6778512bc137ac23170f3de",
+      "active_branch": "kesh/openhop-bridge",
+      "replayed_tip": "db910446785b26e736a7f06eebb3e2b085a798ec",
+      "upstream_base": null,
+      "commits": [
+        {
+          "original_commit": "bc75a2343505923f0c2f6b4a9789b5bac83d9ff6",
+          "corrected_commit": "54359c3001a32eba7a2ba83144bb4a56060878ab",
+          "tree": "fad05ddf6faa1c7f7bc80326c6d25f527b8c316e",
+          "original_subject": "Publish SACMesh integration source and compatible component manifest",
+          "corrected_subject": "Publish OpenHop bridge integration source and compatible component manifest"
+        },
+        {
+          "original_commit": "dd4001c39e7506b901a9c8cb4238c07c81e064c6",
+          "corrected_commit": "fa9e0f85491fa6e37c7c3f5db9abad7beaea0036",
+          "tree": "c9acd6943e0808b9ae4ee0d843d1f80063854a3c",
+          "original_subject": "Record verified TFT release assets and source build evidence",
+          "corrected_subject": "Record verified TFT release assets and source build evidence"
+        },
+        {
+          "original_commit": "5ce2b32829dbb56a1c7375c332848467a04d9065",
+          "corrected_commit": "0c7100d820c94d384f3817e82a868b932bb95f2e",
+          "tree": "2b70df44406b8c7686142f498e8a790cbc26c294",
+          "original_subject": "Describe native channel bridging and the full SACMesh changes",
+          "corrected_subject": "Describe native channel bridging and the full OpenHop bridge changes"
+        },
+        {
+          "original_commit": "e086c1246e1ec45e1d77fbe7face8ec8b6710bb5",
+          "corrected_commit": "55e743d3515a96dd4f42eb8957afb77a68db61cb",
+          "tree": "caab80e969fc3cbc61323bbfd49c134bf20766b8",
+          "original_subject": "Attribute the OpenHop bridge project to Kesh",
+          "corrected_subject": "Attribute the OpenHop bridge project to Kesh"
+        },
+        {
+          "original_commit": "a01a069c97e2cb32e6778512bc137ac23170f3de",
+          "corrected_commit": "db910446785b26e736a7f06eebb3e2b085a798ec",
+          "tree": "616c55e6127c044a49a025cacb8e654a4afbed8f",
+          "original_subject": "Use the personal OpenHop bridge repository identity",
+          "corrected_subject": "Use the personal OpenHop bridge repository identity"
+        }
+      ]
+    },
+    {
+      "repository": "https://github.com/kesh33w/MeshCore",
+      "original_branch": "sacmesh/v43-tft-internet-link-20261105",
+      "original_tip": "cdc887bff9cbeeb697e872e5464e3601dbb18a48",
+      "active_branch": "kesh/v43-tft-ilink",
+      "replayed_tip": "ed03d939004821fdfcc76186ebcb9a1abfa90fa2",
+      "upstream_base": "d664d89df66bdacc1319900a2e2d152fa31b9dc9",
+      "commits": [
+        {
+          "original_commit": "92297eb12bdd683fe559d05be7ff297243d24dba",
+          "corrected_commit": "5495fe335fe0a2652979d58d4d0b5fa3a09f9878",
+          "tree": "a4374d759d7172c22cc50d338a15c7e0ee83ea50",
+          "original_subject": "Add SACMesh V4.3 TFT private link and setup source",
+          "corrected_subject": "Add Kesh OpenHop bridge V4.3 TFT private link and setup source"
+        },
+        {
+          "original_commit": "85af7e596bde8e03b09e29f47cde40187972740e",
+          "corrected_commit": "f0ca77732019b8b125377f217c37351f0fe97457",
+          "tree": "d9c4ef69903cf137ba20dd09dff07adcb645893b",
+          "original_subject": "Document reusable firmware identity and verified source build",
+          "corrected_subject": "Document reusable firmware identity and verified source build"
+        },
+        {
+          "original_commit": "3aa270d953251272bb3317c0be669e05c3bac380",
+          "corrected_commit": "804e330ef0fc1f33d248b5349b1cae0180f9d2d8",
+          "tree": "ce37871c96d716373d524e705b80d30740396bae",
+          "original_subject": "Clarify Kesh's personal bridge project attribution",
+          "corrected_subject": "Clarify Kesh's personal bridge project attribution"
+        },
+        {
+          "original_commit": "cdc887bff9cbeeb697e872e5464e3601dbb18a48",
+          "corrected_commit": "ed03d939004821fdfcc76186ebcb9a1abfa90fa2",
+          "tree": "c7dfbd3de72c53ecfffe3e6736cb5ae8ce70d7e3",
+          "original_subject": "Name the TFT project guide for the OpenHop bridge",
+          "corrected_subject": "Name the TFT project guide for the OpenHop bridge"
+        }
+      ]
+    }
+  ],
+  "unchanged_commit_aliases": [
+    {
+      "repository": "https://github.com/kesh33w/openhop_core",
+      "original_branch": "sacmesh/private-link-20261105",
+      "active_branch": "kesh/bridge",
+      "commit": "8c825c3e1ab72bd65b567d2c75c704b7f17babeb"
+    },
+    {
+      "repository": "https://github.com/kesh33w/openhop_repeater",
+      "original_branch": "sacmesh/private-link-ui-20261105",
+      "active_branch": "kesh/bridge",
+      "commit": "186341f6c299091278fca2b87c21444e5d776f16"
+    },
+    {
+      "repository": "https://github.com/kesh33w/openHop_RepeaterUI",
+      "original_branch": "sacmesh/private-link-ui-20261105",
+      "active_branch": "kesh/bridge",
+      "commit": "e6cbec327da1386460c4419a7b3bf3bcba9ae633"
+    },
+    {
+      "repository": "https://github.com/kesh33w/openhop_modem",
+      "original_branch": "sacmesh/heltec-bench-20261105",
+      "active_branch": "kesh/heltec-bench",
+      "commit": "f8d718be2b7142f69ad3caec5e2fcab15fd0f898"
+    }
+  ]
+}
