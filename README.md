@@ -33,11 +33,11 @@ PYTHONPATH=.:sources/openhop_core/src:sources/openhop_repeater:tools .venv/bin/p
 
 The tests use loopback sockets and simulated radios. They do not require credentials or connected hardware. An operating-system sandbox that blocks socket wakeups can prevent the threaded event-loop test from finishing.
 
-For the frontend, use Node 22 and the UI fork's package lock, then run `npm ci`, `npm run type-check`, `npm run test:unit -- --run --maxWorkers=2`, and `npm run build-only`. For TFT build instructions see `SACMESH-TFT.md` in the MeshCore branch. The private link sidecar must be on the daemon's Python path. `enrollment/pi_enrollment_entry.py --check` checks imports without starting a service; activation requires explicit configuration, CA, issuer-key and state paths. Configure routes and trust deliberately before activation.
+For the frontend, use Node 22 and the UI fork's package lock, then run `npm ci`, `npm run type-check`, `npm run test:unit -- --run --maxWorkers=2`, and `npm run build-only`. For TFT build instructions see [TFT build instructions](https://github.com/kesh33w/MeshCore/blob/sacmesh/v43-tft-internet-link-20261105/OPENHOP-BRIDGE-TFT.md) in the MeshCore branch. The private link sidecar must be on the daemon's Python path. `enrollment/pi_enrollment_entry.py --check` checks imports without starting a service; activation requires explicit configuration, CA, issuer-key and state paths. Configure routes and trust deliberately before activation.
 
 ## Firmware and verification
 
-[Releases](https://github.com/kesh33w/sacmesh-bridge/releases) provide the merged TFT image, checksum and source manifest. Flash a merged image at `0x0` with a full erase. This replaces existing firmware, identity and settings. Browser USB flashing remains unverified. The current endpoint is a trial service hosted at sacmesh.org.
+[Releases](https://github.com/kesh33w/kesh-openhop-bridge/releases) provide the merged TFT image, checksum and source manifest. Flash a merged image at `0x0` with a full erase. This replaces existing firmware, identity and settings. Browser USB flashing remains unverified. The current endpoint is a trial service hosted at sacmesh.org.
 
 One encrypted recipient message and return ACK passed through the Pi and TFT. This bounded test does not establish endurance or field reliability. The final Internet Link implementation previously passed 191 backend tests, 26 UI tests, type checking and a production build. Fresh hub integration checks passed 165 tests. Focused publication checks passed 42 backend checks, 17 UI checks, type checking and a production build. CI status is reported separately from local tests.
 

@@ -33,7 +33,7 @@ def main():
         value = getattr(args, field)
         if value is None or not value.is_absolute():
             parser.error(field.replace('_', '-') + ' requires an explicit absolute path')
-    # Record the reviewed SACMesh bundle while preserving upstream base numbers.
+    # Record the reviewed OpenHop bridge bundle while preserving upstream base numbers.
     repeater.__version__ = '1.1.5.dev179+g61e5ffa.ilinkui20261105'
     openhop_core.__version__ = '1.1.4.dev6+g61e5ffa.ilinkui20261105'
     import repeater.main
