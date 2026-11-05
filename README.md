@@ -1,6 +1,17 @@
 # SACMesh bridge
 
-SACMesh combines native OpenHop channel bridging on a Pi with a TLS Internet Link to a MeshCore-based Heltec V4.3 TFT radio. The TFT has Wi-Fi setup on its display and generates its identity during installation.
+SACMesh extends OpenHop with native channel bridging on a Pi between two radios operating on different frequencies. For each configured mapping, the bridge authenticates and decrypts a group message with the source channel key, then re-encrypts it with the destination channel key for transmission on the other radio. Mappings are directional; a reverse mapping enables replies.
+
+Channel translation supports ordinary group text in flood packets, not signed group subtypes, direct messages, or control traffic. The bridge needs authorized keys for both channels and is a trusted plaintext boundary, so translation is not end-to-end encryption across distinct channel keys. Channel authentication does not establish an individual sender's identity. Separately enabled direct-message and acknowledgement routes forward eligible explicit-path packets between radios without decrypting their contents.
+
+The SACMesh changes span OpenHop Core, Repeater, Repeater UI, a separate USB Modem fork, and MeshCore TFT firmware:
+
+- Native radio queues and airtime accounting handle crossings, with bounded queues and retries, restart-safe echo suppression, and explicit handling of failed or uncertain transmissions. Receive observations retain radio provenance.
+- Bridge settings provide channel mappings, write-only channel keys, direct-message routes, queue limits, and explicit origin and companion home radios. Validated configuration changes require a restart.
+- Separate USB bench modem targets support Heltec T096 and V4.3 hardware with restricted radio profiles and transmit power.
+- An optional TLS Internet Link connects the Pi to a MeshCore-based Heltec V4.3 TFT radio. The TFT adds on-screen Wi-Fi setup, enrollment, and identity generation during installation. Local RF startup remains independent of optional link failures.
+
+This hub pins compatible component commits and provides reconstruction instructions, integration tests, and firmware releases. Test scope and hardware limitations are recorded below.
 
 ## Source
 
