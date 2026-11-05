@@ -27,6 +27,10 @@ Separately enabled routes forward eligible explicit-path direct messages and ack
 
 ### Optional iLink
 
+Kesh uses iLink as a temporary compatibility workaround for an older-firmware repeater. Kesh reports that the regional switch to two-byte paths left people behind that repeater cut off from multibyte traffic.
+
+The current implementation admits only eligible packets with two- or three-byte path hashes on approved iLink routes. One-byte traffic stays on normal RF. In this installation, that means continuing to rely on the existing older repeater for single-byte traffic. Multibyte traffic also retains normal RF forwarding under its own policy. This describes the intended topology, not automatic fallback selection or guaranteed delivery.
+
 The TLS Internet Link connects the Pi to the MeshCore Observer-based Heltec V4.3 TFT radio. The TFT firmware provides on-screen Wi-Fi setup, enrollment, and identity generation during installation. Local RF startup remains independent of optional link failures.
 
 The TFT iLink firmware and the OpenHop USB bench modem are separate components. The USB bench targets support Heltec T096 and V4.3 hardware with restricted radio profiles and transmit power.
