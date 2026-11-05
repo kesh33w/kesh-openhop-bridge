@@ -14,13 +14,7 @@ Native OpenHop routing runs first. For eligible group traffic, the bridge can ke
 
 The diagram shows one configured direction for supported group text. Each send goes through the native radio queues.
 
-```mermaid
-flowchart TB
-    A["Group text received on radio A<br/>Frequency A · source channel"] --> R["Native OpenHop routing on the Pi"]
-    R -->|Local policy allows| L["Local repeat on radio A<br/>Original encrypted payload"]
-    R -->|Selected mapping and crossing policy allow| T["Authenticate and decrypt with source key<br/>Re-encrypt with destination key"]
-    T --> B["Transmit on radio B<br/>Frequency B · destination channel"]
-```
+![Group text can repeat locally on radio A or cross a selected mapping through source-key decryption and destination-key re-encryption to radio B.](docs/bridge-routing.svg)
 
 Mappings are directional. Add a reverse mapping for replies. Translation accepts ordinary group text in flood packets; signed group subtypes, direct messages, and control traffic do not use this translation path.
 

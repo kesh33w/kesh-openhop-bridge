@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="490" viewBox="0 0 860 490" role="img" aria-labelledby="title description">
+  <title id="title">Local repeating and selected channel translation</title>
+  <desc id="description">Supported group text received on radio A enters native OpenHop routing on the Pi. If local policy allows, radio A repeats the original encrypted payload. A selected mapping allowed by crossing policy authenticates and decrypts with the source key, re-encrypts with the destination key, then queues transmission on radio B at frequency B. The translation step is a trusted plaintext boundary. The two sends are queued separately.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="860" height="490" rx="12" fill="#f8fafc"/>
+  <g fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M430 78 V111"/>
+    <path d="M330 173 V204 H170 V269"/>
+    <path d="M530 173 V204 H620 V269"/>
+    <path d="M620 370 V411"/>
+  </g>
+  <g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif" text-anchor="middle" fill="#0f172a">
+    <rect x="230" y="16" width="400" height="62" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="430" y="41" font-size="17" font-weight="600">Group text received on radio A</text>
+    <text x="430" y="64" font-size="16" fill="#475569">Frequency A · source channel</text>
+    <rect x="230" y="112" width="400" height="61" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="430" y="148" font-size="17" font-weight="600">Native OpenHop routing on the Pi</text>
+    <rect x="62" y="225" width="216" height="25" fill="#f8fafc"/>
+    <text x="170" y="243" font-size="15" fill="#475569">Local policy allows</text>
+    <rect x="435" y="218" width="370" height="43" fill="#f8fafc"/>
+    <text x="620" y="235" font-size="15" fill="#475569">Selected mapping and</text>
+    <text x="620" y="254" font-size="15" fill="#475569">crossing policy allow</text>
+    <rect x="20" y="270" width="300" height="80" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="170" y="300" font-size="17" font-weight="600">Local repeat on radio A</text>
+    <text x="170" y="326" font-size="16" fill="#475569">Original encrypted payload</text>
+    <rect x="405" y="270" width="430" height="100" rx="8" fill="#eff6ff" stroke="#60a5fa"/>
+    <text x="620" y="296" font-size="16" font-weight="600">Authenticate and decrypt with source key</text>
+    <text x="620" y="322" font-size="16" font-weight="600">Re-encrypt with destination key</text>
+    <text x="620" y="350" font-size="15" fill="#1d4ed8">Trusted plaintext boundary</text>
+    <rect x="460" y="412" width="320" height="62" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="620" y="437" font-size="17" font-weight="600">Transmit on radio B</text>
+    <text x="620" y="460" font-size="16" fill="#475569">Frequency B · destination channel</text>
+  </g>
+</svg>
