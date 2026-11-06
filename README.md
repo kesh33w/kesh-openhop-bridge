@@ -26,6 +26,8 @@ For the frontend, use Node 22 and the UI fork's package lock, then run `npm ci`,
 
 ## Firmware and verification
 
+The November 6 automatic-advert release restores the standard 16-second zero-hop boot advert and existing saved advert timers. Existing zero intervals stay disabled; configure `set advert.interval 60` and `set flood.advert.interval 47` for persistent hourly local and 47-hour flood adverts. This release passed the TFT build, preprocessing and image checks, with no new RF test.
+
 [Releases](https://github.com/kesh33w/sacmesh-bridge/releases) provide the merged TFT image, checksum and source manifest. Flash a merged image at `0x0` with a full erase. This replaces existing firmware, identity and settings. Browser USB flashing remains unverified. The current endpoint is a SACMesh trial service.
 
 One encrypted recipient message and return ACK passed through the Pi and TFT. This bounded test does not establish endurance or field reliability. The final Internet Link implementation previously passed 191 backend tests, 26 UI tests, type checking and a production build. Fresh hub integration checks passed 165 tests. Focused publication checks passed 42 backend checks, 17 UI checks, type checking and a production build. CI status is reported separately from local tests.

@@ -1,13 +1,13 @@
 {
-  "release": "sacmesh-v43-tft-20261105",
+  "release": "sacmesh-v43-tft-20261106-auto-adverts",
   "hardware": "Heltec V4.3 TFT ESP32-S3",
   "flash_offset": "0x0",
   "full_erase": true,
   "binary": {
     "name": "sacmesh-v43-tft-merged.bin",
     "size": 16711680,
-    "sha256": "ff6be9a07b78e3edf9558e7cea6bb19cee5568ac4cf9302b757a7027e65564bd",
-    "application_sha256": "9027de19f5423baabd57c9ef380ba3bef69e731a1486aa34c220638d26eb7132"
+    "sha256": "569e2760db6bd60ec9afd7ebd0bb0057e83c7b9b24ca666f29f6a5a08ddeaa7c",
+    "application_sha256": "119a8f2d00a19ab230ccb07356a0ba8a574a6606c95fbd3f6c0dea8ed58e680e"
   },
   "components": {
     "openhop_core": {
@@ -28,7 +28,7 @@
     },
     "meshcore_tft": {
       "url": "https://github.com/kesh33w/MeshCore.git",
-      "commit": "85af7e596bde8e03b09e29f47cde40187972740e"
+      "commit": "b86e2e63e70dc54cb6f0e316c98b22967ba181e0"
     }
   },
   "firmware_base": "d664d89df66bdacc1319900a2e2d152fa31b9dc9",
@@ -36,9 +36,10 @@
     "platformio": "6.2.0",
     "platform": "espressif32@6.11.0",
     "environment": "sacmesh_v43_tft_touch",
-    "result": "passed with existing resolved dependency cache and downloaded public CA bundle",
-    "application_sha256": "ef18c69c10315755e6d81b4a3597037df3be7c5cd74a6fad2ff16a76be3560ab",
-    "bit_identical": false
+    "result": "passed using existing resolved dependency cache and unchanged public CA bundle",
+    "application_sha256": "119a8f2d00a19ab230ccb07356a0ba8a574a6606c95fbd3f6c0dea8ed58e680e",
+    "bit_identical": false,
+    "bit_identical_note": "The release contains this exact source-built application; reproduction across build environments has not been tested."
   },
   "credential_review": {
     "nvs": "erased, all 0xff",
@@ -49,17 +50,26 @@
     "private_generated_headers": "absent from exact source tree"
   },
   "validation": {
-    "hub_tests": 165,
-    "focused_backend_tests": 42,
-    "focused_ui_tests": 17,
-    "ui_type_check": "passed",
-    "ui_build": "passed",
-    "hardware": "prior bounded actual Pi-to-V4 recipient message and ACK; no hardware action for publication",
+    "tft_platformio_build": "passed",
+    "release_target_preprocessing": "boot advert enabled and sendSelfAdvertisement(16000,false) compiled",
+    "application_validation_hash": "valid",
+    "partition_table": "identical to previous release",
+    "all_bytes_outside_app0": "identical to previous release",
+    "hardware": "read-only existing-board identity and current interval inspection; no flash or RF test of this release",
     "browser_usb_flash": "unverified"
   },
   "limitations": [
-    "The fresh source build used an existing dependency cache, not a fresh registry installation.",
-    "Generated public CA bundle and build environment differences prevent a bit-identical rebuild claim.",
-    "The complete newly merged image was assembled from tested application and checked boot/filesystem segments, not reflashed as a whole."
-  ]
+    "Build used existing resolved dependencies rather than a fresh registry install.",
+    "No hardware flash or RF transmission test of this release.",
+    "Full browser USB flashing and field reliability remain unverified.",
+    "Explicit saved zero intervals stay disabled; configure nonzero intervals for recurring adverts."
+  ],
+  "advert_behavior": {
+    "boot_zero_hop_delay_ms": 16000,
+    "fresh_local_minutes": 2,
+    "fresh_flood_hours": 47,
+    "configured_local_minimum_minutes": 60,
+    "configured_flood_minimum_hours": 3,
+    "preserves_explicit_zero": true
+  }
 }
