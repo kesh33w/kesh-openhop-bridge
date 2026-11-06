@@ -37,11 +37,11 @@
     "platform": "espressif32@6.11.0",
     "environment": "sacmesh_v43_tft_touch",
     "result": "passed using existing resolved dependency cache and unchanged public CA bundle",
-    "application_sha256": "119a8f2d00a19ab230ccb07356a0ba8a574a6606c95fbd3f6c0dea8ed58e680e",
+    "application_sha256": "63882ca72ca31dde743fa09a52aa02a378fa8cae78c35b8fb8efdff5c54afe1f",
     "bit_identical": false,
     "bit_identical_note": "The release contains this exact source-built application; reproduction across build environments has not been tested.",
-    "hardware": "existing attached TFT configured and read back at60-minute local, unchanged47-hour flood; new binary not flashed",
-    "timer_simulation": "passed actual timer/dispatch excerpts with60-minute compiled default, flood unchanged, boundary, explicit-zero and rollover checks"
+    "hardware": "Attached TFT local interval set and read back at 60 minutes; flood remains47 hours. New binary not flashed.",
+    "timer_simulation": "Passed production timer/dispatch excerpts with a60-minute compiled default, unchanged flood, explicit zero, boundary and rollover checks."
   },
   "credential_review": {
     "nvs": "erased, all 0xff",
@@ -57,7 +57,7 @@
     "application_validation_hash": "valid",
     "partition_table": "identical to previous release",
     "all_bytes_outside_app0": "identical to previous release",
-    "hardware": "read-only existing-board identity and current interval inspection; no flash or RF test of this release",
+    "hardware": "Attached TFT configuration verified; no flash or RF test of the new default binary.",
     "browser_usb_flash": "unverified",
     "timer_simulation": "passed production source excerpt simulation for defaults, interval boundaries, configured hourly interval, flood priority/rescheduling, explicit zero and millis rollover"
   },
