@@ -5,7 +5,9 @@ import hashlib
 import logging
 import re
 import ssl
+import time
 from collections import Counter
+from contextvars import ContextVar
 from pathlib import Path
 
 from .adapter import MAX_FRAME, AuthenticatedPeerTransport, PacketRejected, decode
@@ -14,11 +16,14 @@ from .adapter import MAX_FRAME, AuthenticatedPeerTransport, PacketRejected, deco
 class PeerStream(AuthenticatedPeerTransport):
     """Stable adapter identity across sessions; no offline buffer or retransmission."""
 
-    def __init__(self, peer_id, fingerprint):
+    def __init__(self, peer_id, fingerprint, *, clock=time.monotonic):
         self.verified_peer_id = peer_id
         self._writer = None
         self._fingerprint = fingerprint
         self._lock = asyncio.Lock()
+        self._clock = clock
+        self._last_valid_inbound_frame = None
+        self._inbound_frame_context = ContextVar("ilink_inbound_frame", default=None)
 
     @property
     def verified_peer_id(self):
@@ -31,6 +36,25 @@ class PeerStream(AuthenticatedPeerTransport):
     @property
     def connected(self):
         return self._writer is not None and not self._writer.is_closing()
+
+    @property
+    def last_valid_inbound_frame_age_seconds(self):
+        """Most recent validated inbound peer activity, never RF delivery."""
+        if self._last_valid_inbound_frame is None:
+            return None
+        return max(0.0, self._clock() - self._last_valid_inbound_frame)
+
+    def _record_valid_inbound_frame(self, writer, received_at):
+        # A slow receiver from an old session cannot refresh its replacement.
+        if self.owns(writer):
+            self._last_valid_inbound_frame = received_at
+
+    def inbound_frame_validated(self):
+        arrival = self._inbound_frame_context.get()
+        if arrival is not None:
+            # Consume the observation before RF work can create child tasks.
+            self._inbound_frame_context.set(None)
+            self._record_valid_inbound_frame(*arrival)
 
     def attach(self, writer):
         tls = writer.get_extra_info("ssl_object")
@@ -228,11 +252,14 @@ class TlsPeerService:
                 )
                 if not transport.owns(writer):
                     return
+                token = transport._inbound_frame_context.set((writer, transport._clock()))
                 try:
                     result = await self.receiver(header + body, transport)
                 except PacketRejected as exc:
                     # Only explicit packet-policy failures leave the stream usable.
                     result = exc.reason
+                finally:
+                    transport._inbound_frame_context.reset(token)
                 if result not in (None, "rf_planner_accepted"):
                     # Fixed reasons only. Never emit wire data or exception text.
                     reason = (

@@ -121,6 +121,9 @@ class AuthenticatedPeerTransport(ABC):
         """Close an uncertain send; session-aware implementations may already do so."""
         self.abort()
 
+    def inbound_frame_validated(self) -> None:
+        """Optional synchronous activity observer, independent of RF admission."""
+
     @abstractmethod
     async def send(self, frame: bytes) -> None:
         """Acceptance by transport only, never evidence of RF or recipient ACK."""
@@ -385,6 +388,7 @@ class Adapter:
             raise ValueError("Invalid width metadata or packet ID")
         if width not in (2, 3):
             raise PacketRejected("width_policy", "Ineligible width")
+        transport.inbound_frame_validated()
         if self._inbound_inflight >= self.config.max_inflight:
             return "busy"
         retention = max(e["expires_ms"], now + self.config.ttl_ms)

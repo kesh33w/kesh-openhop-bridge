@@ -43,9 +43,38 @@ def test_live_save_persists_and_retains_registry_routes_and_secrets(config, tmp_
     result = view(config, binding)
     assert result['settings'] == result['active_settings']
     assert not any(secret in str(result) for secret in ('HIDDEN', '/secret/key', 'a'*64, 'private_key_file', 'peer_fingerprints'))
-    assert result['peers'] == [{'id': 'device-a', 'connected': False}]
+    assert result['peers'] == [{'id': 'device-a', 'connected': False,
+                               'last_valid_inbound_frame_age_seconds': None}]
     binding.service.transports['device-a'].connected = True
     assert view(config, binding)['peers'][0]['connected']
+
+def test_peer_activity_status_keeps_age_separate_from_connection(config, tmp_path):
+    from private_link.transport import PeerStream
+    from test_transport import PIN, MockTls, Writer
+
+    _, binding = rig(config, tmp_path)
+    tick = [10.0]
+    transport = PeerStream('device-a', PIN, clock=lambda: tick[0])
+    binding.service.transports['device-a'] = transport
+    writer = Writer(MockTls())
+    assert transport.attach(writer)
+    assert view(config, binding)['peers'][0] == {
+        'id': 'device-a', 'connected': True, 'last_valid_inbound_frame_age_seconds': None,
+    }
+    transport._record_valid_inbound_frame(writer, tick[0])
+    tick[0] = 15.5
+    assert view(config, binding)['peers'][0]['last_valid_inbound_frame_age_seconds'] == 5.5
+    transport.detach(writer)
+    assert view(config, binding)['peers'][0] == {
+        'id': 'device-a', 'connected': False, 'last_valid_inbound_frame_age_seconds': 5.5,
+    }
+    tick[0] = 20.0
+    replacement = Writer(MockTls())
+    assert transport.attach(replacement)
+    assert view(config, binding)['peers'][0] == {
+        'id': 'device-a', 'connected': True, 'last_valid_inbound_frame_age_seconds': 10.0,
+    }
+    transport.detach(replacement)
 
 def test_failed_persistence_changes_neither_memory_nor_runtime(config, tmp_path):
     api, binding = rig(config, tmp_path)
@@ -84,6 +113,7 @@ def test_real_http_endpoint_schedules_status_and_save_on_daemon_loop(config, tmp
         cherrypy.request.method = 'GET'
         result = endpoint.internet_link()
         assert result['success'] and result['data']['listening']
+        assert result['data']['peers'][0]['last_valid_inbound_frame_age_seconds'] is None
         cherrypy.request.method = 'POST'
         cherrypy.request.json = {'max_inflight': 8}
         assert endpoint.update_internet_link()['success']

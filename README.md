@@ -45,6 +45,8 @@ The TFT iLink firmware and the OpenHop USB bench modem are separate components. 
 | Echo suppression | Restart-safe reservations for original and translated packet hashes. |
 | Receive observations | Radio provenance is retained. |
 
+Internet Link peer status includes `last_valid_inbound_frame_age_seconds`, measured with a monotonic clock. It is `null` until a complete inbound frame passes validation. Its captured arrival time is recorded immediately after validation, before replay admission or RF planning can wait or fail. The age is retained across disconnects and reconnects, and resets when the service process restarts. Valid duplicates and frames rejected by downstream admission or RF planning still count as link activity. Neither connection status nor frame activity establishes RF transmission or recipient delivery.
+
 ## Source
 
 This hub contains the Python Internet Link sidecar, portable enrollment source, and integration tests. It also provides reconstruction instructions and firmware releases.
