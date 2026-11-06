@@ -1,5 +1,5 @@
 {
-  "purpose": "Parallel project branches with corrected attribution; original refs and release pins remain unchanged.",
+  "purpose": "Historical attribution mapping and branch-creation aliases. Original commit IDs and release pins are preserved; branch heads can advance.",
   "repositories": [
     {
       "repository": "https://github.com/kesh33w/kesh-openhop-bridge",
@@ -110,5 +110,34 @@
       "active_branch": "kesh/heltec-bench",
       "commit": "f8d718be2b7142f69ad3caec5e2fcab15fd0f898"
     }
-  ]
+  ],
+  "unchanged_commit_aliases_scope": "These commits identify alias creation, not current branch heads.",
+  "current_source_snapshot": {
+    "audited_on": "2026-11-06",
+    "hub_source_commit": "662e7f459891a0e72a3c25bcb1a9f2b7d31eb9d9",
+    "component_manifest": "components.current.json",
+    "deployment_claim": "Source snapshot only. Peer-activity commits are published but were not deployed on the audited Pi.",
+    "components": {
+      "openhop_core": {
+        "url": "https://github.com/kesh33w/openhop_core.git",
+        "commit": "8c825c3e1ab72bd65b567d2c75c704b7f17babeb"
+      },
+      "openhop_repeater": {
+        "url": "https://github.com/kesh33w/openhop_repeater.git",
+        "commit": "93a91613ff4035b7c879c095e1c2ef4478607646"
+      },
+      "openhop_ui": {
+        "url": "https://github.com/kesh33w/openHop_RepeaterUI.git",
+        "commit": "befc3c168c2119d016329a2454b30494687593f6"
+      },
+      "openhop_modem": {
+        "url": "https://github.com/kesh33w/openhop_modem.git",
+        "commit": "f8d718be2b7142f69ad3caec5e2fcab15fd0f898"
+      },
+      "meshcore_tft": {
+        "url": "https://github.com/kesh33w/MeshCore.git",
+        "commit": "350f2569bbc4f41b2ee93d8732f3af103075ffbf"
+      }
+    }
+  }
 }

@@ -61,7 +61,9 @@ This hub contains the Python Internet Link sidecar, portable enrollment source, 
 
 Current hub development uses `kesh/openhop-bridge`. The TFT branch derives from MeshCore observer commit `d664d89df66bdacc1319900a2e2d152fa31b9dc9`.
 
-[components.json](components.json) pins compatible public commits. It and the release manifests retain the original published release pins, rather than following active branch tips. See [branch history and clone-switching instructions](docs/branch-history.md) for the verified commit mapping and preserved original branches.
+[components.current.json](components.current.json) pins the current development source snapshot audited on November 6, 2026. It includes the published iLink peer-activity changes. This is a source snapshot, not a statement of what is installed on a Pi.
+
+[components.json](components.json) and the existing release manifests retain the original published release pins. Existing tags and release assets are preserved. See [branch history and clone-switching instructions](docs/branch-history.md) for current source revisions, the historical commit mapping, and the distinction between published source and deployment.
 
 Runtime keys, client certificates, Wi-Fi passwords, live routes, and enrollment records are installation inputs and are excluded from this repository.
 
@@ -72,12 +74,14 @@ Runtime keys, client certificates, Wi-Fi passwords, live routes, and enrollment 
 Use Python 3.14 for the recorded environment. From a new checkout:
 
 ```sh
-python3 tools/materialize.py
+python3 tools/materialize.py --manifest components.current.json
 python3 -m venv .venv
 .venv/bin/pip install -r requirements-test.txt
 .venv/bin/pip install --no-deps -e sources/openhop_core -e sources/openhop_repeater
 PYTHONPATH=.:sources/openhop_core/src:sources/openhop_repeater:tools .venv/bin/python -m pytest -p bench_test_guard private_link/tests tests -q --timeout=10
 ```
+
+Without `--manifest`, the materializer continues to use the historical `components.json`. For an original release reconstruction, check out that release's hub commit and use its original manifest. The tool refuses existing component destinations; use a separate clean checkout for a different snapshot.
 
 The tests use loopback sockets and simulated radios. They do not require credentials or connected hardware. An operating-system sandbox that blocks socket wakeups can prevent the threaded event-loop test from finishing.
 

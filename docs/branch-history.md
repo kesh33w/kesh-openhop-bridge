@@ -6,7 +6,32 @@ This is Kesh's personal OpenHop bridge project. The active branches use Kesh/Ope
 
 The hub defaults to `kesh/openhop-bridge`. Core, Repeater and Repeater UI default to `kesh/bridge`; Modem defaults to `kesh/heltec-bench`. MeshCore retains its unrelated `dev` default. Use its `kesh/v43-tft-ilink` project branch explicitly.
 
-The original hub `main`, original component branches and existing tags remain unchanged. The `sacmesh-v43-tft-20261105` release still points to hub commit `dd4001c39e7506b901a9c8cb4238c07c81e064c6`. Its assets, checksums and source manifest are unchanged. `components.json` and `release-manifest.json` retain the original published pins, including TFT commit `85af7e596bde8e03b09e29f47cde40187972740e`. Reconstruction therefore uses the original release source, not the current branch tips.
+Branch heads can advance. The tables below separate the November 6 source snapshot from the historical branch-creation mapping. The original branches remain available; their current heads should not be treated as immutable release identifiers.
+
+[components.current.json](../components.current.json) records the audited development component commits. Use `python3 tools/materialize.py --manifest components.current.json` from this hub to materialize that snapshot. Omitting `--manifest` still selects the original `components.json`.
+
+The `sacmesh-v43-tft-20261105` release still points to hub commit `dd4001c39e7506b901a9c8cb4238c07c81e064c6`. Its assets, checksums and source manifest are unchanged. `components.json` and `release-manifest.json` retain the original published pins, including TFT commit `85af7e596bde8e03b09e29f47cde40187972740e`. Check out the release's hub commit and use its original manifest for historical reconstruction.
+
+## Audited source snapshot, November 6, 2026
+
+These are published source revisions observed during the audit. Later documentation commits in this hub do not change the source revisions below.
+
+| Repository | Active branch | Audited source commit |
+| --- | --- | --- |
+| kesh-openhop-bridge | `kesh/openhop-bridge` | [`662e7f45`](https://github.com/kesh33w/kesh-openhop-bridge/commit/662e7f459891a0e72a3c25bcb1a9f2b7d31eb9d9) |
+| openhop_core | `kesh/bridge` | [`8c825c3e`](https://github.com/kesh33w/openhop_core/commit/8c825c3e1ab72bd65b567d2c75c704b7f17babeb) |
+| openhop_repeater | `kesh/bridge` | [`93a91613`](https://github.com/kesh33w/openhop_repeater/commit/93a91613ff4035b7c879c095e1c2ef4478607646) |
+| openHop_RepeaterUI | `kesh/bridge` | [`befc3c16`](https://github.com/kesh33w/openHop_RepeaterUI/commit/befc3c168c2119d016329a2454b30494687593f6) |
+| openhop_modem | `kesh/heltec-bench` | [`f8d718be`](https://github.com/kesh33w/openhop_modem/commit/f8d718be2b7142f69ad3caec5e2fcab15fd0f898) |
+| MeshCore TFT | `kesh/v43-tft-ilink` | [`350f2569`](https://github.com/kesh33w/MeshCore/commit/350f2569bbc4f41b2ee93d8732f3af103075ffbf) |
+
+The later [local60 TFT release](https://github.com/kesh33w/kesh-openhop-bridge/releases/tag/sacmesh-v43-tft-20261106-local60) retains its own original source manifest and binary checksums. Its source provenance must not be replaced with the active branch's corrected-history commit. The [TFT guide](https://github.com/kesh33w/MeshCore/blob/350f2569bbc4f41b2ee93d8732f3af103075ffbf/OPENHOP-BRIDGE-TFT.md) describes the runtime changes carried into that branch.
+
+### Published source and Pi deployment
+
+The November 6 read-only audit found the echo-lookup fix `c8495f1` and RF receive-age changes `d274488` installed in the production Pi's venv. Its release source checkout was older than the installed package, so the checkout alone does not establish the running version.
+
+The coordinated peer-activity changes are published but were not deployed at the audit: hub `662e7f4`, repeater `93a9161`, and UI `befc3c1`. The installed sidecar's `adapter.py` and `transport.py` matched the preceding hub revision `c75ce18`; the repeater API and served RF-age UI also preceded peer activity. Materializing current source does not deploy it or verify hardware behavior.
 
 ## Corrected parallel histories
 
@@ -26,11 +51,11 @@ The mapping below covers the recreated commits. Later documentation commits exis
 | MeshCore | [`3aa270d9`](https://github.com/kesh33w/MeshCore/commit/3aa270d953251272bb3317c0be669e05c3bac380) | [`804e330e`](https://github.com/kesh33w/MeshCore/commit/804e330ef0fc1f33d248b5349b1cae0180f9d2d8) |
 | MeshCore | [`cdc887bf`](https://github.com/kesh33w/MeshCore/commit/cdc887bff9cbeeb697e872e5464e3601dbb18a48) | [`ed03d939`](https://github.com/kesh33w/MeshCore/commit/ed03d939004821fdfcc76186ebcb9a1abfa90fa2) |
 
-## Aliases with unchanged commits
+## Historical branch-creation aliases
 
-These four forks need no recreated history. Their new default branches point to the exact original commits; the old branches remain available.
+At branch creation, these four forks needed no recreated history. Each new default branch started at the exact original commit below. These are historical alias records, not current branch heads. Repeater and UI have since advanced; their audited revisions are in the source snapshot above.
 
-| Repository | Original branch | Active branch | Unchanged commit |
+| Repository | Original branch | Active branch | Commit at alias creation |
 | --- | --- | --- | --- |
 | openhop_core | `sacmesh/private-link-20261105` | `kesh/bridge` | [`8c825c3e`](https://github.com/kesh33w/openhop_core/commit/8c825c3e1ab72bd65b567d2c75c704b7f17babeb) |
 | openhop_repeater | `sacmesh/private-link-ui-20261105` | `kesh/bridge` | [`186341f6`](https://github.com/kesh33w/openhop_repeater/commit/186341f6c299091278fca2b87c21444e5d776f16) |
@@ -75,4 +100,4 @@ In the Modem clone:
 
 If the local branch already exists, use `git switch` with its name instead of creating it again. Transfer any additional local commits individually after review. The hub's original and corrected histories have different root commits; merging the old branch wholesale would reintroduce the original history.
 
-New hub clones use the new default automatically. New MeshCore clones still use `dev` unless a project branch is selected. The original refs and release pins remain available for historical builds and rollback.
+New hub clones use the new default automatically. New MeshCore clones still use `dev` unless a project branch is selected. Original commit IDs and release pins remain available for historical builds and rollback. Select an exact commit or release manifest rather than assuming a branch is frozen.
