@@ -1,13 +1,13 @@
 {
-  "release": "sacmesh-v43-tft-20261106-auto-adverts",
+  "release": "sacmesh-v43-tft-20261106-local60",
   "hardware": "Heltec V4.3 TFT ESP32-S3",
   "flash_offset": "0x0",
   "full_erase": true,
   "binary": {
     "name": "sacmesh-v43-tft-merged.bin",
     "size": 16711680,
-    "sha256": "569e2760db6bd60ec9afd7ebd0bb0057e83c7b9b24ca666f29f6a5a08ddeaa7c",
-    "application_sha256": "119a8f2d00a19ab230ccb07356a0ba8a574a6606c95fbd3f6c0dea8ed58e680e"
+    "sha256": "8fd1e6fb519462b728a1e8877f8cc49afdcd1222fb24f2e73c56e6105f4d3f52",
+    "application_sha256": "63882ca72ca31dde743fa09a52aa02a378fa8cae78c35b8fb8efdff5c54afe1f"
   },
   "components": {
     "openhop_core": {
@@ -16,11 +16,11 @@
     },
     "openhop_repeater": {
       "url": "https://github.com/kesh33w/openhop_repeater.git",
-      "commit": "186341f6c299091278fca2b87c21444e5d776f16"
+      "commit": "641065e8e6fda29626df1ad8ee0f46a6db50666e"
     },
     "openhop_ui": {
       "url": "https://github.com/kesh33w/openHop_RepeaterUI.git",
-      "commit": "e6cbec327da1386460c4419a7b3bf3bcba9ae633"
+      "commit": "9c0302b4b808446f75dd13eaafb219781d4745f5"
     },
     "openhop_modem": {
       "url": "https://github.com/kesh33w/openhop_modem.git",
@@ -28,7 +28,7 @@
     },
     "meshcore_tft": {
       "url": "https://github.com/kesh33w/MeshCore.git",
-      "commit": "e5045ba2925673a075f0c7b5a2d525726979d145"
+      "commit": "ddd2b54d742bf4f674bb6bc1e75cef167bb4b828"
     }
   },
   "firmware_base": "d664d89df66bdacc1319900a2e2d152fa31b9dc9",
@@ -39,7 +39,9 @@
     "result": "passed using existing resolved dependency cache and unchanged public CA bundle",
     "application_sha256": "119a8f2d00a19ab230ccb07356a0ba8a574a6606c95fbd3f6c0dea8ed58e680e",
     "bit_identical": false,
-    "bit_identical_note": "The release contains this exact source-built application; reproduction across build environments has not been tested."
+    "bit_identical_note": "The release contains this exact source-built application; reproduction across build environments has not been tested.",
+    "hardware": "existing attached TFT configured and read back at60-minute local, unchanged47-hour flood; new binary not flashed",
+    "timer_simulation": "passed actual timer/dispatch excerpts with60-minute compiled default, flood unchanged, boundary, explicit-zero and rollover checks"
   },
   "credential_review": {
     "nvs": "erased, all 0xff",
@@ -60,14 +62,14 @@
     "timer_simulation": "passed production source excerpt simulation for defaults, interval boundaries, configured hourly interval, flood priority/rescheduling, explicit zero and millis rollover"
   },
   "limitations": [
-    "Build used existing resolved dependencies rather than a fresh registry install.",
-    "No hardware flash or RF transmission test of this release.",
-    "Full browser USB flashing and field reliability remain unverified.",
-    "Explicit saved zero intervals stay disabled; configure nonzero intervals for recurring adverts."
+    "Build reused the existing resolved dependency cache.",
+    "New default binary was not flashed or RF-tested; the attached device already has the requested saved local interval.",
+    "Browser full-erase flashing and endurance remain unverified.",
+    "Existing saved preferences, including intentional zero and flood values, are preserved."
   ],
   "advert_behavior": {
     "boot_zero_hop_delay_ms": 16000,
-    "fresh_local_minutes": 2,
+    "fresh_local_minutes": 60,
     "fresh_flood_hours": 47,
     "configured_local_minimum_minutes": 60,
     "configured_flood_minimum_hours": 3,
