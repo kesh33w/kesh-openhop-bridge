@@ -1,0 +1,566 @@
+{
+  "release": "kesh-v43-oled-20261106",
+  "hardware": "Standard Heltec WiFi LoRa 32 V4.3, SSD1306 OLED, ESP32-S3, 16 MB flash, 2 MB PSRAM",
+  "environment": "kesh_v43_oled",
+  "board": "heltec_v4",
+  "flash_offset": "0x0",
+  "full_erase": true,
+  "source": {
+    "url": "https://github.com/kesh33w/MeshCore",
+    "branch": "kesh/v43-oled-ilink",
+    "commit": "ddc27fb99cb34b21e6f8a0943bf4e64237961012",
+    "base_commit": "350f2569bbc4f41b2ee93d8732f3af103075ffbf",
+    "published_tft_comparison": "ddd2b54d742bf4f674bb6bc1e75cef167bb4b828",
+    "runtime_base_comparison": "examples/src/variants/boards and example build flags match the published TFT source before the OLED/default changes"
+  },
+  "toolchain": {
+    "platformio": "6.2.0",
+    "platform": "espressif32@6.11.0",
+    "arduino_framework": "3.20017.241212+sha.dcc1105b",
+    "tls_source_original_sha256": "10d70932e1bee30a67a244d47055651f2b08795a89f3990b53a1ee0ec5e6e444",
+    "tls_source_patched_sha256": "2d81806d48d28244421d130905137e47352cd0c6f9a358ca672e0d0320507669",
+    "ca_bundle_sha256": "b28a5e1e189da081dce84273245d1e86b81e22f3a642eaf6598379a1677263ea"
+  },
+  "defaults": {
+    "frequency_mhz": 909.875,
+    "bandwidth_khz": 62.5,
+    "spreading_factor": 9,
+    "coding_rate": "4/5",
+    "chip_tx_setting_dbm": 10,
+    "path_hash_bytes": 2,
+    "local_advert_minutes": 60,
+    "flood_advert_hours": 47,
+    "startup_advert_delay_ms": 16000,
+    "saved_preferences_take_precedence": true
+  },
+  "credentials": {
+    "nvs": "erased all 0xff",
+    "spiffs": "formatted empty; mkspiffs list and unpack verified",
+    "valid_embedded_private_keys": 0,
+    "valid_embedded_pem_certificates": "CA trust roots only",
+    "pem_ca_fingerprints": [
+      "95ba89c4c7aba633269de1dec54e79308456be41fbc17f31dc87f0d439b4e198",
+      "95ba89c4c7aba633269de1dec54e79308456be41fbc17f31dc87f0d439b4e198",
+      "96bcec06264976f37460779acf28c5a7cfe8a3c0aae11a8ffcee05c0bddf08c6",
+      "76b27b80a58027dc3cf1da68dac17010ed93997d0b603e2fadbe85012493b5a7",
+      "96bcec06264976f37460779acf28c5a7cfe8a3c0aae11a8ffcee05c0bddf08c6",
+      "76b27b80a58027dc3cf1da68dac17010ed93997d0b603e2fadbe85012493b5a7",
+      "96bcec06264976f37460779acf28c5a7cfe8a3c0aae11a8ffcee05c0bddf08c6",
+      "76b27b80a58027dc3cf1da68dac17010ed93997d0b603e2fadbe85012493b5a7",
+      "96bcec06264976f37460779acf28c5a7cfe8a3c0aae11a8ffcee05c0bddf08c6",
+      "76b27b80a58027dc3cf1da68dac17010ed93997d0b603e2fadbe85012493b5a7"
+    ],
+    "generated_provisioning_headers": "absent",
+    "identity_and_admin": "generated per installation"
+  },
+  "validation": {
+    "firmware_build": "passed",
+    "target_preprocessing": {
+      "expected_macros": {
+        "HELTEC_LORA_V4": "1",
+        "HELTEC_LORA_V4_OLED": "1",
+        "DISPLAY_CLASS": "SSD1306Display",
+        "PIN_BOARD_SDA": "17",
+        "PIN_BOARD_SCL": "18",
+        "PIN_OLED_RESET": "21",
+        "PIN_VEXT_EN": "36",
+        "PIN_USER_BTN": "0",
+        "PRIVATE_INSTALL_IDENTITY": "1",
+        "PRIVATE_OBSERVER_BASE": "1",
+        "PRIVATE_REMOTE_CAPTURE": "1",
+        "PRIVATE_TESTER_FULL_SETUP": "1",
+        "PRIVATE_REMOTE_TLS12_MINIMUM": "1",
+        "PRIVATE_PATH_HASH_BYTES": "2",
+        "LORA_FREQ": "909.875f",
+        "LORA_BW": "62.5f",
+        "LORA_SF": "9",
+        "LORA_CR": "5",
+        "LORA_TX_POWER": "10",
+        "ENABLE_ADVERT_ON_BOOT": "1",
+        "WITH_MQTT_BRIDGE": "1"
+      },
+      "forbidden_tft_and_r8_macros": "absent",
+      "local_advert_minutes": 60,
+      "flood_advert_hours": 47,
+      "path_hash_bytes": 2,
+      "oled_symbols": true,
+      "tft_touch_symbols": false,
+      "enrollment_ilink_mqtt_symbols": true,
+      "saved_preferences_loaded_after_constructor_defaults": true
+    },
+    "native_tests": {
+      "private_link": 6,
+      "routing_policy": 14,
+      "webconfig_keys": 17,
+      "total": 37
+    },
+    "tls_patch_guards": "idempotence and unknown-source refusal passed",
+    "image_checks": {
+      "partitions": {
+        "nvs": {
+          "offset": 36864,
+          "size": 20480
+        },
+        "otadata": {
+          "offset": 57344,
+          "size": 8192
+        },
+        "app0": {
+          "offset": 65536,
+          "size": 6553600
+        },
+        "app1": {
+          "offset": 6619136,
+          "size": 6553600
+        },
+        "spiffs": {
+          "offset": 13172736,
+          "size": 3538944
+        },
+        "coredump": {
+          "offset": 16711680,
+          "size": 65536
+        }
+      },
+      "artifacts": {
+        "kesh-v43-oled-merged.bin": {
+          "size": 16711680,
+          "sha256": "38ef6fd2edfdc4a5d074a008f78fce7ac85f667a0b3dd37c51f5fffede66b8e1"
+        },
+        "kesh-v43-oled-app.bin": {
+          "size": 1718032,
+          "sha256": "50bd4204cfbafe0582bf1c315a7d47997ea65090a2c2b98857e00662abf0b8a5"
+        }
+      },
+      "nvs": "erased, all 0xff"
+    },
+    "hardware_flash": "not performed",
+    "browser_usb_flash": "unverified",
+    "oled_first_boot_phone_setup_enrollment_rf_message_ack": "unverified on non-TFT hardware"
+  },
+  "dependencies": [
+    {
+      "name": "Adafruit AHTX0",
+      "version": "2.0.6",
+      "spec": {
+        "owner": "adafruit",
+        "id": 7142,
+        "name": "Adafruit AHTX0",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit BME280 Library",
+      "version": "2.3.0",
+      "spec": {
+        "owner": "adafruit",
+        "id": 166,
+        "name": "Adafruit BME280 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit BME680 Library",
+      "version": "2.0.6",
+      "spec": {
+        "owner": "adafruit",
+        "id": 1922,
+        "name": "Adafruit BME680 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit BMP085 Library",
+      "version": "1.2.4",
+      "spec": {
+        "owner": "adafruit",
+        "id": 525,
+        "name": "Adafruit BMP085 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit BMP280 Library",
+      "version": "2.6.8",
+      "spec": {
+        "owner": "adafruit",
+        "id": 528,
+        "name": "Adafruit BMP280 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit BusIO",
+      "version": "1.17.4",
+      "spec": {
+        "owner": "adafruit",
+        "id": 6214,
+        "name": "Adafruit BusIO",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit GFX Library",
+      "version": "1.13.0",
+      "spec": {
+        "owner": "adafruit",
+        "id": 13,
+        "name": "Adafruit GFX Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit INA219",
+      "version": "1.2.3",
+      "spec": {
+        "owner": "adafruit",
+        "id": 160,
+        "name": "Adafruit INA219",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit INA260 Library",
+      "version": "1.5.4",
+      "spec": {
+        "owner": "adafruit",
+        "id": 6239,
+        "name": "Adafruit INA260 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit INA3221 Library",
+      "version": "1.0.1",
+      "spec": {
+        "owner": "adafruit",
+        "id": 17880,
+        "name": "Adafruit INA3221 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit MLX90614 Library",
+      "version": "2.1.7",
+      "spec": {
+        "owner": "adafruit",
+        "id": 782,
+        "name": "Adafruit MLX90614 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit NeoPixel",
+      "version": "1.15.5",
+      "spec": {
+        "owner": "adafruit",
+        "id": 28,
+        "name": "Adafruit NeoPixel",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit SH110X",
+      "version": "2.1.15",
+      "spec": {
+        "owner": "adafruit",
+        "id": 7444,
+        "name": "Adafruit SH110X",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit SHTC3 Library",
+      "version": "1.0.2",
+      "spec": {
+        "owner": "adafruit",
+        "id": 7407,
+        "name": "Adafruit SHTC3 Library",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit SSD1306",
+      "version": "2.5.17",
+      "spec": {
+        "owner": "adafruit",
+        "id": 135,
+        "name": "Adafruit SSD1306",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit Unified Sensor",
+      "version": "1.1.15",
+      "spec": {
+        "owner": "adafruit",
+        "id": 31,
+        "name": "Adafruit Unified Sensor",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Adafruit_VL53L0X",
+      "version": "1.2.5",
+      "spec": {
+        "owner": "adafruit",
+        "id": 1494,
+        "name": "Adafruit_VL53L0X",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "ArduinoJson",
+      "version": "7.4.3",
+      "spec": {
+        "owner": "bblanchon",
+        "id": 64,
+        "name": "ArduinoJson",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Arduino_LPS22HB",
+      "version": "1.0.3",
+      "spec": {
+        "owner": "arduino-libraries",
+        "id": 6591,
+        "name": "Arduino_LPS22HB",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "AsyncElegantOTA",
+      "version": "2.2.8",
+      "spec": {
+        "owner": null,
+        "id": null,
+        "name": "AsyncElegantOTA",
+        "requirements": null,
+        "uri": "file://arch/esp32/AsyncElegantOTA"
+      }
+    },
+    {
+      "name": "AsyncTCP",
+      "version": "3.5.0",
+      "spec": {
+        "owner": "esp32async",
+        "id": 18273,
+        "name": "AsyncTCP",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "CayenneLPP",
+      "version": "1.6.1",
+      "spec": {
+        "owner": "electroniccats",
+        "id": 1767,
+        "name": "CayenneLPP",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Crypto",
+      "version": "0.4.0",
+      "spec": {
+        "owner": "rweather",
+        "id": 1168,
+        "name": "Crypto",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "ESPAsyncWebServer",
+      "version": "3.10.3",
+      "spec": {
+        "owner": "esp32async",
+        "id": 18274,
+        "name": "ESPAsyncWebServer",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "INA226",
+      "version": "0.6.6",
+      "spec": {
+        "owner": "robtillaart",
+        "id": 12232,
+        "name": "INA226",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Melopero RV3028",
+      "version": "1.2.0",
+      "spec": {
+        "owner": "melopero",
+        "id": 11317,
+        "name": "Melopero RV3028",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "MicroNMEA",
+      "version": "2.0.6",
+      "spec": {
+        "owner": "stevemarple",
+        "id": 625,
+        "name": "MicroNMEA",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "NTPClient",
+      "version": "3.2.1",
+      "spec": {
+        "owner": "arduino-libraries",
+        "id": 551,
+        "name": "NTPClient",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "PsychicMqttClient",
+      "version": "0.2.4",
+      "spec": {
+        "owner": "elims",
+        "id": 17628,
+        "name": "PsychicMqttClient",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "RTClib",
+      "version": "2.1.4",
+      "spec": {
+        "owner": "adafruit",
+        "id": 83,
+        "name": "RTClib",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "SNMP_Agent",
+      "version": "2.1.0",
+      "spec": {
+        "owner": "0neblock",
+        "id": 13145,
+        "name": "SNMP_Agent",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Sensirion Core",
+      "version": "0.7.3",
+      "spec": {
+        "owner": "sensirion",
+        "id": 11744,
+        "name": "Sensirion Core",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Sensirion I2C SHT4x",
+      "version": "1.1.2",
+      "spec": {
+        "owner": "sensirion",
+        "id": 12994,
+        "name": "Sensirion I2C SHT4x",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Time",
+      "version": "1.6.1",
+      "spec": {
+        "owner": "paulstoffregen",
+        "id": 44,
+        "name": "Time",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Timezone",
+      "version": "1.3.1",
+      "spec": {
+        "owner": "jchristensen",
+        "id": 76,
+        "name": "Timezone",
+        "requirements": null,
+        "uri": null
+      }
+    },
+    {
+      "name": "Unity",
+      "version": "2.6.1",
+      "spec": {
+        "owner": "throwtheswitch",
+        "id": 13894,
+        "name": "Unity",
+        "requirements": null,
+        "uri": null
+      }
+    }
+  ],
+  "limitations": [
+    "No non-TFT hardware was flashed or exercised.",
+    "Browser full-erase flashing and end-to-end delivery/ACK remain unverified.",
+    "Dependency version ranges resolved current public packages; no bit-identical rebuild claim."
+  ],
+  "artifacts": {
+    "BUILD-AND-INSTALL.md": {
+      "size": 4828,
+      "sha256": "b79aafa6ce23602fb1e9a8d7930792673aa4c680977d9898105c6812893decca"
+    },
+    "LICENSES.zip": {
+      "size": 93006,
+      "sha256": "7eef9ed599b48ebd768dd8e53855ea8eaae6c7e3a00157e0198e900ca1c50ec0"
+    },
+    "firmware-source.tar.gz": {
+      "size": 1707302,
+      "sha256": "b11333b5fad5c42ff2bf88b1b5738a8eed61d5d41a2abcdb3f41fb377bc001f2"
+    },
+    "kesh-v43-oled-app.bin": {
+      "size": 1718032,
+      "sha256": "50bd4204cfbafe0582bf1c315a7d47997ea65090a2c2b98857e00662abf0b8a5"
+    },
+    "kesh-v43-oled-merged.bin": {
+      "size": 16711680,
+      "sha256": "38ef6fd2edfdc4a5d074a008f78fce7ac85f667a0b3dd37c51f5fffede66b8e1"
+    }
+  }
+}
