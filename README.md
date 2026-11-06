@@ -2,7 +2,7 @@
 
 A personal OpenHop project for a Pi with two radios on different frequencies: keep local repeating and selectively translate channel messages to the other radio.
 
-The bridge authenticates and decrypts a selected group message with its source channel key, then re-encrypts it with the destination channel key. An optional **iLink (Internet Link)** connects the Pi to Kesh's MeshCore Observer-based V4.3 TFT firmware.
+The bridge authenticates and decrypts a selected group message with its source channel key, then re-encrypts it with the destination channel key. An optional **iLink (Internet Link)** connects the Pi to Kesh's MeshCore Observer-based V4.3 TFT and OLED firmware.
 
 [How it works](#how-the-bridge-works) · [Source](#source) · [Build and test](#reconstruct-and-test) · [Firmware and verification](#firmware-and-verification) · [Branch history](docs/branch-history.md)
 
@@ -31,7 +31,7 @@ Kesh uses iLink as a temporary compatibility workaround for an older-firmware re
 
 The current implementation admits only eligible packets with two- or three-byte path hashes on approved iLink routes. One-byte traffic stays on normal RF. In this installation, that means continuing to rely on the existing older repeater for single-byte traffic. Multibyte traffic also retains normal RF forwarding under its own policy. This describes the intended topology, not automatic fallback selection or guaranteed delivery.
 
-The TLS Internet Link connects the Pi to the MeshCore Observer-based Heltec V4.3 TFT radio. The TFT firmware provides on-screen Wi-Fi setup, enrollment, and identity generation during installation. Local RF startup remains independent of optional link failures.
+The TLS Internet Link connects the Pi to MeshCore Observer-based Heltec V4.3 radios. The TFT build has touchscreen Wi-Fi setup. The standard OLED build uses a phone setup portal and USER-button recovery. Both generate their own identity and enrollment credentials during installation. Local RF startup remains independent of optional link failures.
 
 The TFT iLink firmware and the OpenHop USB bench modem are separate components. The USB bench targets support Heltec T096 and V4.3 hardware with restricted radio profiles and transmit power.
 
@@ -57,6 +57,7 @@ This hub contains the Python Internet Link sidecar, portable enrollment source, 
 | OpenHop Repeater | [kesh/bridge](https://github.com/kesh33w/openhop_repeater/tree/kesh/bridge) | Native routing, channel translation, queues, and bridge settings |
 | Repeater UI | [kesh/bridge](https://github.com/kesh33w/openHop_RepeaterUI/tree/kesh/bridge) | Bridge configuration and Internet Link controls |
 | OpenHop Modem | [kesh/heltec-bench](https://github.com/kesh33w/openhop_modem/tree/kesh/heltec-bench) | Separate USB bench modem targets |
+| V4.3 OLED iLink firmware | [kesh/v43-oled-ilink](https://github.com/kesh33w/MeshCore/tree/kesh/v43-oled-ilink) | Standard V4.3 SSD1306 OLED endpoint with phone Wi-Fi setup and enrollment |
 | V4.3 TFT iLink firmware | [kesh/v43-tft-ilink](https://github.com/kesh33w/MeshCore/tree/kesh/v43-tft-ilink) | MeshCore Observer-based TFT endpoint with Wi-Fi setup and enrollment |
 
 Current hub development uses `kesh/openhop-bridge`. The TFT branch derives from MeshCore observer commit `d664d89df66bdacc1319900a2e2d152fa31b9dc9`.
@@ -96,15 +97,19 @@ npm run test:unit -- --run --maxWorkers=2
 npm run build-only
 ```
 
-### TFT and enrollment
+### Firmware and enrollment
 
-For TFT builds, see [the V4.3 TFT iLink guide](https://github.com/kesh33w/MeshCore/blob/kesh/v43-tft-ilink/OPENHOP-BRIDGE-TFT.md).
+For hardware-specific setup and builds, see the [V4.3 TFT guide](https://github.com/kesh33w/MeshCore/blob/kesh/v43-tft-ilink/OPENHOP-BRIDGE-TFT.md) or [V4.3 OLED guide](https://github.com/kesh33w/MeshCore/blob/kesh/v43-oled-ilink/OPENHOP-BRIDGE-OLED.md).
 
 The private link sidecar must be on the daemon's Python path. `enrollment/pi_enrollment_entry.py --check` checks imports without starting a service. Activation requires explicit configuration, CA, issuer-key, and state paths. Configure routes and trust deliberately before activation.
 
 ## Firmware and verification
 
-[Download releases](https://github.com/kesh33w/kesh-openhop-bridge/releases) for the merged TFT image, checksum, and source manifest. The current endpoint is a trial service hosted at sacmesh.org.
+[Download releases](https://github.com/kesh33w/kesh-openhop-bridge/releases) for the hardware-specific merged images, checksums, and source manifests.
+
+The [V4.3 OLED trial release](https://github.com/kesh33w/kesh-openhop-bridge/releases/tag/kesh-v43-oled-20261106) retains the local60 TFT repeater, observer, enrollment and iLink behavior with OLED hardware and phone setup. New installations default to two-byte paths, 60-minute local adverts and 47-hour flood adverts. It passed a complete build, exact-target preprocessing, 37 focused native tests and image/credential checks. No non-TFT device was flashed. OLED first boot, enrollment, RF delivery and recipient ACK remain unverified. The existing TFT releases and assets remain available.
+
+The current endpoint is a trial service hosted at sacmesh.org.
 
 > [!WARNING]
 > Flash a merged image at `0x0` with a full erase. This replaces existing firmware, identity, and settings. Browser USB flashing remains unverified.
