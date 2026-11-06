@@ -56,7 +56,8 @@
     "partition_table": "identical to previous release",
     "all_bytes_outside_app0": "identical to previous release",
     "hardware": "read-only existing-board identity and current interval inspection; no flash or RF test of this release",
-    "browser_usb_flash": "unverified"
+    "browser_usb_flash": "unverified",
+    "timer_simulation": "passed production source excerpt simulation for defaults, interval boundaries, configured hourly interval, flood priority/rescheduling, explicit zero and millis rollover"
   },
   "limitations": [
     "Build used existing resolved dependencies rather than a fresh registry install.",
