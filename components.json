@@ -5,11 +5,11 @@
   },
   "openhop_repeater": {
     "url": "https://github.com/kesh33w/openhop_repeater.git",
-    "commit": "186341f6c299091278fca2b87c21444e5d776f16"
+    "commit": "641065e8e6fda29626df1ad8ee0f46a6db50666e"
   },
   "openhop_ui": {
     "url": "https://github.com/kesh33w/openHop_RepeaterUI.git",
-    "commit": "e6cbec327da1386460c4419a7b3bf3bcba9ae633"
+    "commit": "9c0302b4b808446f75dd13eaafb219781d4745f5"
   },
   "openhop_modem": {
     "url": "https://github.com/kesh33w/openhop_modem.git",
@@ -17,6 +17,6 @@
   },
   "meshcore_tft": {
     "url": "https://github.com/kesh33w/MeshCore.git",
-    "commit": "e5045ba2925673a075f0c7b5a2d525726979d145"
+    "commit": "c277a035b99a230634170c8b417684aa6e1c5b06"
   }
 }
