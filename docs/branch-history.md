@@ -4,11 +4,11 @@ This is Kesh's personal OpenHop bridge project. The active branches use Kesh/Ope
 
 ## Current development and published releases
 
-The hub defaults to `kesh/openhop-bridge`. Core, Repeater and Repeater UI default to `kesh/bridge`; Modem defaults to `kesh/heltec-bench`. MeshCore retains its unrelated `dev` default. Use its `kesh/v43-tft-ilink` project branch explicitly.
+The hub defaults to `kesh/openhop-bridge`. Core, Repeater and Repeater UI default to `kesh/bridge`; Modem defaults to `kesh/heltec-bench`. MeshCore retains its unrelated `dev` default. Select `kesh/v43-tft-ilink` for TFT hardware or `kesh/v43-oled-ilink` for the standard OLED hardware explicitly.
 
 Branch heads can advance. The tables below separate the November 6 source snapshot from the historical branch-creation mapping. The original branches remain available; their current heads should not be treated as immutable release identifiers.
 
-[components.current.json](../components.current.json) records the audited development component commits. Use `python3 tools/materialize.py --manifest components.current.json` from this hub to materialize that snapshot. Omitting `--manifest` still selects the original `components.json`.
+[components.current.json](../components.current.json) records the audited development component commits. Later Core and Repeater commits exist on their active branches; this manifest does not track branch tips. The OLED trial uses its own release manifest and is not part of this snapshot. Use `python3 tools/materialize.py --manifest components.current.json` from this hub to materialize that snapshot. Omitting `--manifest` still selects the original `components.json`.
 
 The `sacmesh-v43-tft-20261105` release still points to hub commit `dd4001c39e7506b901a9c8cb4238c07c81e064c6`. Its assets, checksums and source manifest are unchanged. `components.json` and `release-manifest.json` retain the original published pins, including TFT commit `85af7e596bde8e03b09e29f47cde40187972740e`. Check out the release's hub commit and use its original manifest for historical reconstruction.
 

@@ -62,7 +62,7 @@ This hub contains the Python Internet Link sidecar, portable enrollment source, 
 
 Current hub development uses `kesh/openhop-bridge`. The TFT branch derives from MeshCore observer commit `d664d89df66bdacc1319900a2e2d152fa31b9dc9`.
 
-[components.current.json](components.current.json) pins the current development source snapshot audited on November 6, 2026. It includes the published iLink peer-activity changes. This is a source snapshot, not a statement of what is installed on a Pi.
+[components.current.json](components.current.json) pins the current development source snapshot audited on November 6, 2026. It includes the published iLink peer-activity changes. Later Core and Repeater changes exist on their active branches. This manifest remains the dated snapshot; it does not track branch tips or establish what is installed on a Pi. The OLED trial has its own release manifest and is not included in this component manifest.
 
 [components.json](components.json) and the existing release manifests retain the original published release pins. Existing tags and release assets are preserved. See [branch history and clone-switching instructions](docs/branch-history.md) for current source revisions, the historical commit mapping, and the distinction between published source and deployment.
 
