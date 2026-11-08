@@ -2,7 +2,7 @@
 
 A personal OpenHop project for a Pi with two radios on different frequencies: keep local repeating and selectively translate channel messages to the other radio.
 
-The bridge authenticates and decrypts a selected group message with its source channel key, then re-encrypts it with the destination channel key. An optional **iLink (Internet Link)** connects the Pi to Kesh's MeshCore Observer-based V4.3 TFT and OLED firmware.
+The bridge authenticates and decrypts a selected group message with its source channel key, then re-encrypts it with the destination channel key. An optional **iLink (Internet Link)** connects the Pi to Kesh's MeshCore Observer-based V4.3 TFT, V4.3 OLED, and Heltec V3 OLED firmware.
 
 [How it works](#how-the-bridge-works) · [Source](#source) · [Build and test](#reconstruct-and-test) · [Firmware and verification](#firmware-and-verification) · [Branch history](docs/branch-history.md)
 
@@ -57,12 +57,13 @@ This hub contains the Python Internet Link sidecar, portable enrollment source, 
 | OpenHop Repeater | [kesh/bridge](https://github.com/kesh33w/openhop_repeater/tree/kesh/bridge) | Native routing, channel translation, queues, and bridge settings |
 | Repeater UI | [kesh/bridge](https://github.com/kesh33w/openHop_RepeaterUI/tree/kesh/bridge) | Bridge configuration and Internet Link controls |
 | OpenHop Modem | [kesh/heltec-bench](https://github.com/kesh33w/openhop_modem/tree/kesh/heltec-bench) | Separate USB bench modem targets |
+| Heltec V3 OLED iLink firmware | [kesh/v3-oled-ilink](https://github.com/kesh33w/MeshCore/tree/kesh/v3-oled-ilink) | V3 OLED build, packaging source, and recorded hardware-check limits |
 | V4.3 OLED iLink firmware | [kesh/v43-oled-ilink](https://github.com/kesh33w/MeshCore/tree/kesh/v43-oled-ilink) | Standard V4.3 SSD1306 OLED endpoint with phone Wi-Fi setup and enrollment |
 | V4.3 TFT iLink firmware | [kesh/v43-tft-ilink](https://github.com/kesh33w/MeshCore/tree/kesh/v43-tft-ilink) | MeshCore Observer-based TFT endpoint with Wi-Fi setup and enrollment |
 
 Current hub development uses `kesh/openhop-bridge`. The TFT branch derives from MeshCore observer commit `d664d89df66bdacc1319900a2e2d152fa31b9dc9`.
 
-[components.current.json](components.current.json) pins the current development source snapshot audited on November 6, 2026. It includes the published iLink peer-activity changes. Later Core and Repeater changes exist on their active branches. This manifest remains the dated snapshot; it does not track branch tips or establish what is installed on a Pi. The OLED trial has its own release manifest and is not included in this component manifest.
+[components.current.json](components.current.json) pins the source snapshot verified on November 8, 2026. It includes USB metrics, MQTT refresh, separate observer identities, companion loopback, and the published TFT, V4.3 OLED, and V3 OLED source. It does not track future branch tips or establish what is installed on a Pi. The [November 6 source snapshot](docs/source-snapshots/components-2026-11-06.json) and all historical release manifests remain available. See the [source sync and validation record](docs/source-sync-2026-11-08.md) for exact commits, checks and deployment limits.
 
 [components.json](components.json) and the existing release manifests retain the original published release pins. Existing tags and release assets are preserved. See [branch history and clone-switching instructions](docs/branch-history.md) for current source revisions, the historical commit mapping, and the distinction between published source and deployment.
 
