@@ -1,0 +1,30 @@
+{
+  "openhop_core": {
+    "url": "https://github.com/kesh33w/openhop_core.git",
+    "commit": "9f609aac7a204a5db8ed7bc6361426ca80a9cd3c"
+  },
+  "openhop_repeater": {
+    "url": "https://github.com/kesh33w/openhop_repeater.git",
+    "commit": "045edf76a8737f139c789e89626d8f2f207cea1a"
+  },
+  "openhop_ui": {
+    "url": "https://github.com/kesh33w/openHop_RepeaterUI.git",
+    "commit": "ef9427b5270e44a2909e264ea97dd4eedde9e712"
+  },
+  "openhop_modem": {
+    "url": "https://github.com/kesh33w/openhop_modem.git",
+    "commit": "05a042c034d019b8bf8c77a15dee4b4abbc4761f"
+  },
+  "meshcore_tft": {
+    "url": "https://github.com/kesh33w/MeshCore.git",
+    "commit": "350f2569bbc4f41b2ee93d8732f3af103075ffbf"
+  },
+  "meshcore_oled": {
+    "url": "https://github.com/kesh33w/MeshCore.git",
+    "commit": "ddc27fb99cb34b21e6f8a0943bf4e64237961012"
+  },
+  "meshcore_v3": {
+    "url": "https://github.com/kesh33w/MeshCore.git",
+    "commit": "efa67849b4ad7fb4912a8625944c7a63ece31a31"
+  }
+}
